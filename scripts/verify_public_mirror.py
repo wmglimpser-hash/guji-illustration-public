@@ -6,6 +6,7 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
+from urllib.parse import unquote
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -55,6 +56,30 @@ PLACEHOLDER = re.compile(
     r"(?i)(your_|example|placeholder|secret-must-not|dummy|test[_-]?key)"
 )
 
+MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)\s]+)(?:\s+['\"][^)]*['\"])?\)")
+
+
+def check_markdown_links(path: Path, text: str) -> list[str]:
+    """Return broken repository-relative links from one Markdown file."""
+    problems: list[str] = []
+    for match in MARKDOWN_LINK.finditer(text):
+        target = unquote(match.group(1).strip("<>"))
+        if not target or target.startswith(("#", "/", "http://", "https://", "mailto:")):
+            continue
+        relative_target = target.split("#", 1)[0].split("?", 1)[0]
+        if not relative_target:
+            continue
+        resolved = (path.parent / relative_target).resolve()
+        if ROOT not in resolved.parents and resolved != ROOT:
+            line = text.count("\n", 0, match.start()) + 1
+            problems.append(f"link escapes repository: {path.relative_to(ROOT).as_posix()}:{line}")
+        elif not resolved.exists():
+            line = text.count("\n", 0, match.start()) + 1
+            problems.append(
+                f"broken relative link: {path.relative_to(ROOT).as_posix()}:{line} -> {target}"
+            )
+    return problems
+
 
 def main() -> int:
     problems: list[str] = []
@@ -73,6 +98,8 @@ def main() -> int:
         if path.name not in TEXT_FILENAMES and path.suffix.lower() not in TEXT_EXTENSIONS:
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
+        if path.suffix.lower() == ".md":
+            problems.extend(check_markdown_links(path, text))
         for label, pattern in PATTERNS.items():
             for match in pattern.finditer(text):
                 if PLACEHOLDER.search(match.group(0)):
@@ -93,4 +120,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

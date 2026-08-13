@@ -1,10 +1,9 @@
-【已废弃，不得用于新标注】
+【运行时 Prompt 说明】
 
-历史 8 类 Prompt 已归档至：
-`archive/prompt_legacy_8class_20260514.txt`
+现行 Prompt 版本：`quick_search_v7_core_entity_name`。
 
-现行 Prompt：`quick_search_v3_evidence_minimal`
-运行时来源：`app.js` 的 `buildPrompt()`
-唯一执行规范：`../specs/reannotation_spec_v1.md`
+程序不会读取本文件作为提示词。实际提示词由 `app.js` 中的
+`buildPrompt()` 根据证据模式和页面上下文动态构建，分类取值以
+[`../specs/classification_scheme.md`](../specs/classification_scheme.md) 为准。
 
-请勿从本文件复制 Prompt；它只保留为旧路径的防误用提示。
+本文件仅用于解释公开代码的运行入口，避免把历史静态 Prompt 当作现行配置。

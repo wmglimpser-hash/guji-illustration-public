@@ -66,7 +66,7 @@ python bridge.py
   manifest.json  source.png  preview.webp  context-page.jpg  annotation.json
 ```
 
-详细协议、允许字段与后续分层回导边界见 [`../specs/illustration_asset_bridge_v1.md`](../specs/illustration_asset_bridge_v1.md)。
+公开镜像保留 `layer-package-v1` 的运行代码和目录约定；内部素材桥接契约未随公开镜像发布。实现行为以本目录代码、接口校验和上面的目录结构为准。
 
 下游完成分层后，将合规 `layer-package.json` 与预览、图层 PNG 放入：
 
