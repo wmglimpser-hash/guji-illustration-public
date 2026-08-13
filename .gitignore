@@ -1,0 +1,63 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local secrets and machine configuration
+.env
+.env.*
+!.env.example
+demo/config.json
+*.key
+*.pem
+
+# Runtime and research data
+data/
+demo/data/
+demo/data_archives/
+demo/output/
+demo/output_*/
+showcase/data/
+showcase/samples/
+evaluation/
+paper/
+research/
+deliverables/
+
+# Internal project coordination
+.claude/
+.playwright-cli/
+tasks/
+AGENTS.md
+CLAUDE.md
+CONTEXT.md
+HANDOFF*.md
+PLAN*.md
+ROADMAP*.md
+docs/CURRENT_HANDOFF.md
+docs/audits/
+
+# User source material and generated packages
+*.pdf
+*.docx
+*.pptx
+*.xlsx
+*.zip
+*.7z
+*.jpg
+*.jpeg
+*.png
+*.tif
+*.tiff
+showcase_publish*/
+showcase_design_pack*/
+
+# Logs, caches and editor noise
+*.log
+node_modules/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+

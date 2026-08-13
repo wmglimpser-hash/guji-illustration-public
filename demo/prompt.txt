@@ -1,0 +1,10 @@
+【已废弃，不得用于新标注】
+
+历史 8 类 Prompt 已归档至：
+`archive/prompt_legacy_8class_20260514.txt`
+
+现行 Prompt：`quick_search_v3_evidence_minimal`
+运行时来源：`app.js` 的 `buildPrompt()`
+唯一执行规范：`../specs/reannotation_spec_v1.md`
+
+请勿从本文件复制 Prompt；它只保留为旧路径的防误用提示。

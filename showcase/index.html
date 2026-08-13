@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>医图志 — 中医古籍插图活化展示</title>
+<link rel="stylesheet" href="style.css?v=20260811c" />
+</head>
+<body>
+
+<header class="site-head">
+  <a class="brand" href="#/">医图志</a>
+  <nav class="site-nav">
+    <a href="#/" data-nav="home">书架</a>
+    <a href="#/gallery" data-nav="gallery">插图</a>
+    <a href="#/featured" data-nav="featured">精选</a>
+    <a href="#/about" data-nav="about">关于</a>
+  </nav>
+</header>
+
+<main id="app" aria-live="polite"></main>
+
+<footer class="site-foot">
+  <p>本公开代码镜像不附带古籍扫描图或生产标注数据。</p>
+  <p>部署者必须逐项核对图像来源、授权范围与 AI 生成内容标识要求。</p>
+</footer>
+
+<div id="reader" class="reader" hidden></div>
+<div id="lightbox" class="lightbox" hidden></div>
+
+<script src="app.js?v=20260811c"></script>
+</body>
+</html>

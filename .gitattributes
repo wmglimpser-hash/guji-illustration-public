@@ -1,0 +1,2 @@
+# 统一 Python 源文件行尾为 LF，避免 autocrlf 造成的幽灵改动
+*.py text eol=lf

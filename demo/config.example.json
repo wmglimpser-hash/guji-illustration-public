@@ -1,0 +1,10 @@
+{
+  "_说明": "复制本文件为 config.json，并只在本地填写真实凭据。config.json 已被 .gitignore 排除。",
+  "api_provider": "qwen",
+  "model": "your-vision-model",
+  "api_key": "YOUR_API_KEY_HERE",
+  "output_dir": "output",
+  "language": "zh",
+  "bind_host": "127.0.0.1",
+  "allow_origin": "http://127.0.0.1:5678"
+}
