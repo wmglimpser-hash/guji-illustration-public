@@ -31,7 +31,7 @@
 |---|---|
 | `demo/` | 本地导入、OCR、插图确认、标注和校文工作台 |
 | `showcase/` | 面向公众和研究者的只读展示站 |
-| `specs/` | 分类体系、标注字段和评价口径 |
+| `specs/` | 对外公开的分类体系规范 |
 | `scripts/` | 数据检查、导出和发布辅助脚本 |
 
 ## 快速开始
@@ -39,8 +39,8 @@
 环境要求：Python 3.9+，现代浏览器（推荐 Chrome 或 Edge）。
 
 ```bash
-git clone https://github.com/wmglimpser-hash/guji-illustration.git
-cd guji-illustration
+git clone https://github.com/wmglimpser-hash/guji-illustration-public.git
+cd guji-illustration-public
 python -m pip install -r demo/requirements.txt
 python demo/bridge.py
 ```
@@ -57,8 +57,8 @@ API Key、本地 PDF、OCR 结果和标注数据均应保存在本地配置或�
 
 ## 开发者文档
 
-- `AGENTS.md`：协作与验证规则
-- `docs/PROJECT_MANUAL.md`：系统结构与数据模型
-- `CHANGELOG.md`：功能变更记录
+- `demo/README.md`：标注与校文工作台说明
+- `showcase/README.md`：只读展示站说明
+- `PUBLIC_CONTENT_MANIFEST.md`：公开镜像白名单与发布检查
 
 问题反馈可通过 GitHub Issues 提交。
