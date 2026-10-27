@@ -1,8 +1,8 @@
 /* ============================================================
    STATE
    ============================================================ */
-const LS_KEY = 'yituzhi.demo.ui.v1';
-const LS_CFG = 'yituzhi.demo.config.v1';
+const LS_KEY = 'yituzhi.demo.ui.volume.v1';
+const LS_CFG = 'yituzhi.demo.config.volume.v1';
 const illustrationNameRules = globalThis.IllustrationNameRules;
 if (!illustrationNameRules) {
   throw new Error('IllustrationNameRules 未加载，请先加载 illustration_name_rules.js');
@@ -6012,7 +6012,7 @@ async function renderBookWorkspacePanel() {
   (async () => {
     try {
       const doc = await ensurePdfDoc(book).catch(() => null);
-      if (!doc) { loadingEl.textContent = '无 PDF'; return; }
+      if (!doc) { coverWrap.replaceChildren(el('img', {src:'assets/page-1.jpg', style:'width:100%;height:100%;object-fit:contain;', alt:'卷三封面'})); return; }
       const firstPage = pages.length ? pdfPageOf(pages[0]) : 1;
       const dataUrl = await renderThumbnail(doc, firstPage, 260);
       coverWrap.innerHTML = '';
@@ -6079,7 +6079,7 @@ async function renderBookPreviewTab() {
   (async () => {
     try {
       const doc = await ensurePdfDoc(book);
-      if (!doc) { loadingEl.textContent = '无 PDF 文件'; return; }
+      if (!doc) { coverWrap.replaceChildren(el('img', {src:'assets/page-1.jpg', class:'book-preview-cover', alt:'卷三封面'})); return; }
       const coverPages = getBookPages(book);
       const firstPageNum = coverPages.length ? pdfPageOf(coverPages[0]) : 1;
       const dataUrl = await renderThumbnail(doc, firstPageNum, 280);
@@ -15680,14 +15680,14 @@ function renderPageDetailView() {
       const navIdx = pageList.findIndex(p => Number(p.pageNum) === Number(page.pageNum));
       prevPageTarget = navIdx > 0 ? pageList[navIdx - 1] : null;
       nextPageTarget = navIdx >= 0 && navIdx < pageList.length - 1 ? pageList[navIdx + 1] : null;
-      pageCounterText = `原书第 ${page.pageNum} 页 · 样例 ${navIdx + 1}/${pageList.length}`;
+      pageCounterText = `第 ${page.pageNum} / ${book.totalPages} 页`;
     } else {
       const pageSpreads = getSpreadSequence(pageList, traits.coverPageNum ?? null);
       const curSpreadIdx = pageSpreads.findIndex(s => s.some(p => p.pageNum === page.pageNum));
       const curSpread = curSpreadIdx >= 0 ? pageSpreads[curSpreadIdx] : [page];
       prevPageTarget = curSpreadIdx > 0 ? pageSpreads[curSpreadIdx - 1][0] : null;
       nextPageTarget = curSpreadIdx < pageSpreads.length - 1 ? pageSpreads[curSpreadIdx + 1][0] : null;
-      pageCounterText = `原书第 ${curSpread.map(p => p.pageNum).join('、')} 页 · 共 ${pageList.length} 页节选`;
+      pageCounterText = `第 ${curSpread.map(p => p.pageNum).join('、')} 页 · 全卷 ${book.totalPages} 页`;
     }
   } else {
     const activeImg = getActiveQueuedImageForPage(book, page.pageNum, state.selectedId);
@@ -17279,7 +17279,7 @@ function renderPageMode(book, page) {
       side: i === 0 ? 'left' : 'right',
     }));
   }
-  if (!doc) {
+  if (!doc && book.id !== 'sample-juan3') {
     stage.appendChild(el('div', { style: 'font-size:11px; color:#aaa; text-align:center; margin-bottom:8px' },
       book.pdfStorage?.url ? '正在恢复 PDF 文档，暂时显示缩略图…' : 'PDF 未加载，显示缩略图'));
   }

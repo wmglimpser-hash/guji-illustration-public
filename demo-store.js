@@ -1,7 +1,7 @@
 /* Browser-only adapter for the released annotation workbench. No server writes. */
 (function (root) {
   'use strict';
-  const KEY = 'yituzhi.demo.case.v1';
+  const KEY = 'yituzhi.demo.volume.v1';
   const clone = value => JSON.parse(JSON.stringify(value));
   function createStore(fixture, storage) {
     let state = clone(fixture.state);

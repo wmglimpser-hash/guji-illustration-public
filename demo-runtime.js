@@ -14,12 +14,28 @@
   };
   const images = new Map();
   const cache = new Map();
-  const ready = Promise.all([20, 21].map(page => new Promise((resolve, reject) => {
+  const pendingImages = new Map();
+  const pageNumbers = new Set(DEMO_FIXTURE.state.books[0].pages.map(page => Number(page.pageNum)));
+  function loadPage(page) {
+    page = Number(page);
+    if (!pageNumbers.has(page)) return Promise.reject(new Error('页码超出本卷范围'));
+    if (images.has(page)) return Promise.resolve(images.get(page));
+    if (pendingImages.has(page)) return pendingImages.get(page);
+    const pending = new Promise((resolve, reject) => {
     const image = new Image();
-    image.onload = () => { images.set(page, image); resolve(); };
-    image.onerror = () => reject(new Error('案例书页加载失败，请刷新重试'));
+    image.onload = () => {
+      if (images.size >= 8) images.delete(images.keys().next().value);
+      images.set(page, image); resolve(image);
+    };
+    image.onerror = () => reject(new Error(`第${page}页加载失败，请重试`));
     image.src = `assets/page-${page}.jpg`;
-  })));
+    }).finally(() => pendingImages.delete(page));
+    pendingImages.set(page, pending);
+    return pending;
+  }
+  let lastPage = 1;
+  try { lastPage = Number(JSON.parse(localStorage.getItem('yituzhi.demo.ui.volume.v1') || '{}').currentBookPage) || 1; } catch (_) {}
+  const ready = Promise.all([...new Set([1, 20, 21, lastPage])].filter(page => pageNumbers.has(page)).map(loadPage));
 
   // Solve an output-to-source homography for the workbench's four-corner crop.
   function homography(quad) {
@@ -45,8 +61,9 @@
     return m.map(row => row[8]);
   }
   function urlFor(bookId, page, rect, width, rotation = 0, quad = null) {
-    if (bookId !== 'sample-juan3' || !images.has(Number(page))) return '';
+    if (bookId !== 'sample-juan3' || !pageNumbers.has(Number(page))) return '';
     if (!rect && !quad) return `assets/page-${Number(page)}.jpg`;
+    if (!images.has(Number(page))) return `assets/page-${Number(page)}.jpg`;
     const key = JSON.stringify([page, rect, width, rotation, quad]);
     if (cache.has(key)) return cache.get(key);
     const image = images.get(Number(page));
@@ -85,5 +102,5 @@
     cache.set(key, url);
     return url;
   }
-  window.Demo = { store, ready, urlFor };
+  window.Demo = { store, ready, urlFor, loadPage };
 })();
