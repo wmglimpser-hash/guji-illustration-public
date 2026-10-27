@@ -9,6 +9,7 @@ button[hidden]{display:none!important}
 .pane-reference,#reference-resizer,#btn-archive-manager,.ocr-conversion-tool{display:none!important}
 .nav{overflow:auto;min-height:46px}
 #demo-toolbar{width:100%}
+.demo-page-label{font-size:12px;white-space:nowrap}.demo-page-label input{width:54px;padding:5px 4px;border:1px solid #c8c7be;border-radius:4px;background:#fff}
 @media(max-width:1100px){.pane-left{display:none!important}.nav-project{display:none}.shell.reference-workspace .ocr-proof-wrap{grid-template-columns:minmax(250px,.85fr) minmax(280px,1fr)}}
 @media(max-width:650px){.shell.reference-workspace .ocr-proof-wrap{grid-template-columns:1fr}.pane-right{flex-basis:240px;width:240px}.nav-data-source{display:none}#demo-progress{display:none}}
 @media(max-width:900px){#demo-toolbar{padding:8px 12px}.demo-label{width:100%}}

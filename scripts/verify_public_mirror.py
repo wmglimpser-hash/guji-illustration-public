@@ -40,7 +40,14 @@ FORBIDDEN_EXTENSIONS = {
     ".tiff",
 }
 
-DEMO_ASSETS = {'online-demo/assets/gancao-process.jpg': 'c3e64e028a34f67556c17668cb285e744d59166245031751071537ead4a9f3db', 'online-demo/assets/gancao.jpg': '69b163cafeabc8e71c5b58b11a94d6305cfb71d15103f9d3383fdad055de5ef5', 'online-demo/assets/page-20.jpg': '9ac468b12db4a1b099b6c37d77dce3c5c0a562b4052f4ee81c81343c35c4b376', 'online-demo/assets/page-21.jpg': 'a5d330d008d0e7a18e870684c3a7babbb0520bccf5a15b32b074b492c88e9d78'}
+DEMO_ASSETS = {}
+_asset_manifest = ROOT / "scripts" / "online_demo_assets.sha256"
+if _asset_manifest.exists():
+    for _line in _asset_manifest.read_text(encoding="utf-8").splitlines():
+        _digest, _relative = _line.split(None, 1)
+        if not re.fullmatch(r"[0-9a-f]{64}", _digest) or not re.fullmatch(r"online-demo/assets/[A-Za-z0-9-]+\.jpg", _relative):
+            raise ValueError("Invalid demo asset manifest")
+        DEMO_ASSETS[_relative] = _digest
 
 TEXT_FILENAMES = {".gitignore", ".gitattributes"}
 TEXT_EXTENSIONS = {".css", ".html", ".js", ".json", ".md", ".ps1", ".py", ".txt"}
