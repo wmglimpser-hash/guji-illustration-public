@@ -34,7 +34,7 @@
     return pending;
   }
   let lastPage = 1;
-  try { lastPage = Number(JSON.parse(localStorage.getItem('yituzhi.demo.ui.volume.v1') || '{}').currentBookPage) || 1; } catch (_) {}
+  try { lastPage = Number(JSON.parse(localStorage.getItem('yituzhi.demo.ui.work.20261027.v1') || '{}').currentBookPage) || 1; } catch (_) {}
   const ready = Promise.all([...new Set([1, 20, 21, lastPage])].filter(page => pageNumbers.has(page)).map(loadPage));
 
   // Solve an output-to-source homography for the workbench's four-corner crop.
@@ -60,8 +60,21 @@
     }
     return m.map(row => row[8]);
   }
+  const savedCrops = new Map();
+  const cropKey = (page,rect,rotation,quad) => JSON.stringify([Number(page),rect || null,Number(rotation || 0),quad || null]);
+  const book = DEMO_FIXTURE.state.books[0];
+  for (const p of [...book.pages,...book.illustrationPages]) {
+    if (p.contentRect) savedCrops.set(cropKey(p.pageNum,p.contentRect,0,null),p.contentThumbHi);
+    if (p.cropRect) savedCrops.set(cropKey(p.pageNum,p.cropRect,p.cropRotationDeg,null),p.cropThumbHi);
+  }
+  for (const image of DEMO_FIXTURE.state.illustrations) {
+    const pdf=image.pdfSource;
+    savedCrops.set(cropKey(pdf.pageNum,pdf.annotateRect || pdf.cropRect || pdf.contentRect,pdf.rotationDeg,pdf.annotateQuad || pdf.cropQuad),image.url);
+  }
   function urlFor(bookId, page, rect, width, rotation = 0, quad = null) {
-    if (bookId !== 'sample-juan3' || !pageNumbers.has(Number(page))) return '';
+    if (bookId !== 'book_1780643127071' || !pageNumbers.has(Number(page))) return '';
+    const saved = savedCrops.get(cropKey(page,rect,rotation,quad));
+    if (saved) return saved;
     if (!rect && !quad) return `assets/page-${Number(page)}.jpg`;
     if (!images.has(Number(page))) return `assets/page-${Number(page)}.jpg`;
     const key = JSON.stringify([page, rect, width, rotation, quad]);
@@ -94,8 +107,8 @@
       ctx.fillStyle = '#faf8f0'; ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.translate(canvas.width/2, canvas.height/2);
       ctx.rotate(-Number(rotation || 0) * Math.PI/180);
-      ctx.drawImage(image, r[0]*image.naturalWidth, r[1]*image.naturalHeight, sw, sh,
-        -canvas.width/2, -canvas.height/2, canvas.width, canvas.height);
+      ctx.scale(canvas.width/sw,canvas.height/sh);
+      ctx.drawImage(image,-(r[0]*image.naturalWidth+sw/2),-(r[1]*image.naturalHeight+sh/2));
     }
     const url = canvas.toDataURL('image/jpeg', .9);
     if (cache.size > 24) cache.clear();
