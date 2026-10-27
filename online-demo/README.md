@@ -1,6 +1,6 @@
 # 医图志 · 卷三全卷标注体验
 
-**[点击进入在线 Demo](https://yituzhi-annotation.glimpser45.chatgpt.site)**
+**[点击进入在线 Demo](https://wmglimpser-hash.github.io/guji-illustration-public/)**
 
 《补遗雷公炮制便览》卷三全卷160页，可浏览全部书页、连续翻页和按页码跳转。
 
