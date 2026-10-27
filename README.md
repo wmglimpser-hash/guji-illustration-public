@@ -4,7 +4,7 @@
 
 ## 在线体验标注系统
 
-**[打开标注系统在线 Demo](https://yituzhi-annotation.glimpser45.chatgpt.site)**
+**[打开标注系统在线 Demo](https://wmglimpser-hash.github.io/guji-illustration-public/)**
 
 通过《补遗雷公炮制便览》卷3全卷160页，体验校文、调整插图框、查看预置 AI 候选和人工审核。案例修改保存在当前浏览器，可一键重置。建议使用电脑浏览。
 
