@@ -4,11 +4,9 @@
 
 ## 在线体验标注系统
 
-**[打开标注系统在线 Demo（启用 Pages 后可用）](https://wmglimpser-hash.github.io/guji-illustration-public/)**
+**[打开标注系统在线 Demo](https://yituzhi-annotation.glimpser45.chatgpt.site)**
 
-首次启用：打开仓库的 [Settings → Pages](https://github.com/wmglimpser-hash/guji-illustration-public/settings/pages)，Source 选 `Deploy from a branch`，Branch 选 `gh-pages`，文件夹选 `/(root)`，点击 Save。
-
-通过《补遗雷公炮制便览》卷3第20—21页，体验校文、调整插图框、查看预置 AI 候选和人工审核。案例修改保存在当前浏览器，可一键重置。建议使用电脑浏览。
+通过《补遗雷公炮制便览》卷3全卷160页，体验校文、调整插图框、查看预置 AI 候选和人工审核。案例修改保存在当前浏览器，可一键重置。建议使用电脑浏览。
 
 完整的导入、OCR、模型调用和本地数据保存，请按下方“快速开始”运行本地标注系统。
 
@@ -25,7 +23,7 @@
 
 > 本工具在 AI 辅助编程支持下完成开发，作者负责研究设计、分类体系、标注规范、专家审核与研究结论。
 
-> 本仓库是经过白名单筛选的公开代码镜像，仅 `online-demo/` 附两页节选与两条预置候选，不包含完整生产标注库、古籍 PDF、论文稿件或研究冻结数据。数据与图像边界见 [RIGHTS.md](RIGHTS.md)。
+> 本仓库是经过白名单筛选的公开代码镜像，仅 `online-demo/` 附卷三160页原书图像与两条预置候选，不包含完整生产标注库、古籍 PDF、论文稿件或研究冻结数据。数据与图像边界见 [RIGHTS.md](RIGHTS.md)。
 
 ## 方法特点
 
