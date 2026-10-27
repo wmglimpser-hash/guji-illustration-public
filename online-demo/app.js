@@ -1,8 +1,8 @@
 /* ============================================================
    STATE
    ============================================================ */
-const LS_KEY = 'yituzhi.demo.ui.volume.v1';
-const LS_CFG = 'yituzhi.demo.config.volume.v1';
+const LS_KEY = 'yituzhi.demo.ui.work.20261027.v1';
+const LS_CFG = 'yituzhi.demo.config.work.20261027.v1';
 const illustrationNameRules = globalThis.IllustrationNameRules;
 if (!illustrationNameRules) {
   throw new Error('IllustrationNameRules 未加载，请先加载 illustration_name_rules.js');
@@ -17279,7 +17279,7 @@ function renderPageMode(book, page) {
       side: i === 0 ? 'left' : 'right',
     }));
   }
-  if (!doc && book.id !== 'sample-juan3') {
+  if (!doc && book.id !== 'book_1780643127071') {
     stage.appendChild(el('div', { style: 'font-size:11px; color:#aaa; text-align:center; margin-bottom:8px' },
       book.pdfStorage?.url ? '正在恢复 PDF 文档，暂时显示缩略图…' : 'PDF 未加载，显示缩略图'));
   }

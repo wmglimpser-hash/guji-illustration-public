@@ -4582,11 +4582,11 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' data: blob:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 </head>
 <body>
-<section id="demo-toolbar" aria-label="预置案例体验导航">
- <div class="demo-line"><strong>医图志 · 标注系统体验</strong><span class="demo-label">卷三全卷160页 · AI 候选为预置结果 · 修改仅存本浏览器</span><span class="demo-grow"></span><a href="https://github.com/wmglimpser-hash/guji-illustration-public" target="_blank" rel="noopener">项目源码 ↗</a></div>
- <div class="demo-line" style="margin-top:8px"><button disabled class="active" data-step="browse">全卷160页</button><label class="demo-page-label">第 <input id="demo-page-number" type="number" min="1" max="160" value="1" aria-label="跳转页码"> 页</label><button disabled id="demo-go-page">前往</button><button disabled data-step="proof">1 校文</button><button disabled data-step="crop">2 调整插图框</button><button disabled data-step="candidate">3 查看 AI 候选</button><button disabled data-step="review">4 人工审核</button><span id="demo-progress"></span><span class="demo-grow"></span><button disabled id="demo-export">导出体验记录</button><button disabled id="demo-reset">重置案例</button><a href="https://yituzhi.cn/" target="_blank" rel="noopener">成果展示 ↗</a></div>
- <p id="demo-hint">卷三全卷160页，可点书页浏览、连续翻页或输入页码跳转。下方四个入口可体验甘草案例。</p>
-</section><div id="demo-loading" role="status">正在载入古籍案例…</div>
+<section id="demo-toolbar" aria-label="卷三工作快照导航">
+ <div class="demo-line"><strong>医图志 · 标注系统体验</strong><span class="demo-label">卷三本地工作快照 · 160页 / 96个插图页 / 128条标注 · 修改仅存本浏览器</span><span class="demo-grow"></span><a href="https://github.com/wmglimpser-hash/guji-illustration-public" target="_blank" rel="noopener">项目源码 ↗</a></div>
+ <div class="demo-line" style="margin-top:8px"><button disabled class="active" data-step="browse">全卷160页</button><label class="demo-page-label">第 <input id="demo-page-number" type="number" min="1" max="160" value="1" aria-label="跳转页码"> 页</label><button disabled id="demo-go-page">前往</button><button disabled data-step="proof">1 校文</button><button disabled data-step="crop">2 调整插图框</button><button disabled data-step="candidate">3 查看已有标注</button><button disabled data-step="review">4 审核记录</button><span id="demo-progress"></span><span class="demo-grow"></span><button disabled id="demo-export">导出体验记录</button><button disabled id="demo-reset">恢复工作快照</button><a href="https://yituzhi.cn/" target="_blank" rel="noopener">成果展示 ↗</a></div>
+ <p id="demo-hint">卷三全卷160页，可点书页浏览、连续翻页或输入页码跳转。下方入口可查看已有校文、插图选框和标注。</p>
+</section><div id="demo-loading" role="status">正在载入卷三工作快照…</div>
 
 <header class="nav">
   <span class="nav-brand" title="返回首页" onclick="state.mainView='home'; persist(); renderAll();">📜 古籍插图标注</span>
@@ -4681,14 +4681,14 @@
 <div class="toast-wrap" id="toasts"></div>
 <div id="overlay-root"></div>
 
-  <script src="fixture.js"></script>
-  <script src="demo-store.js"></script>
-  <script src="demo-runtime.js"></script>
-  <script src="image_book_import.js?v=20260728-image-book-import-v1"></script>
-  <script src="illustration_name_rules.js?v=20260728-name-rules-v1"></script>
-  <script src="annotation_run.js?v=20260728-annotation-run-v1"></script>
-  <script src="text_proof_diff.js?v=20260729-text-proof-diff-v6"></script>
-  <script src="app.js?v=20260729-proof-diff-and-uncertainty-v7"></script>
-<script src="demo-ui.js"></script>
+  <script src="fixture.js?v=work-20261027-1"></script>
+  <script src="demo-store.js?v=work-20261027-1"></script>
+  <script src="demo-runtime.js?v=work-20261027-1"></script>
+  <script src="image_book_import.js?v=work-20261027-1"></script>
+  <script src="illustration_name_rules.js?v=work-20261027-1"></script>
+  <script src="annotation_run.js?v=work-20261027-1"></script>
+  <script src="text_proof_diff.js?v=work-20261027-1"></script>
+  <script src="app.js?v=work-20261027-1"></script>
+<script src="demo-ui.js?v=work-20261027-1"></script>
 </body>
 </html>
