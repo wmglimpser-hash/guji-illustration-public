@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import re
+import hashlib
 import sys
 from pathlib import Path
 from urllib.parse import unquote
@@ -38,6 +39,8 @@ FORBIDDEN_EXTENSIONS = {
     ".tif",
     ".tiff",
 }
+
+DEMO_ASSETS = {'online-demo/assets/gancao-process.jpg': 'c3e64e028a34f67556c17668cb285e744d59166245031751071537ead4a9f3db', 'online-demo/assets/gancao.jpg': '69b163cafeabc8e71c5b58b11a94d6305cfb71d15103f9d3383fdad055de5ef5', 'online-demo/assets/page-20.jpg': '9ac468b12db4a1b099b6c37d77dce3c5c0a562b4052f4ee81c81343c35c4b376', 'online-demo/assets/page-21.jpg': 'a5d330d008d0e7a18e870684c3a7babbb0520bccf5a15b32b074b492c88e9d78'}
 
 TEXT_FILENAMES = {".gitignore", ".gitattributes"}
 TEXT_EXTENSIONS = {".css", ".html", ".js", ".json", ".md", ".ps1", ".py", ".txt"}
@@ -93,6 +96,9 @@ def main() -> int:
             continue
         relative = path.relative_to(ROOT).as_posix()
         if path.suffix.lower() in FORBIDDEN_EXTENSIONS:
+            expected = DEMO_ASSETS.get(relative)
+            if expected and hashlib.sha256(path.read_bytes()).hexdigest() == expected:
+                continue
             problems.append(f"forbidden binary file: {relative}")
             continue
         if path.name not in TEXT_FILENAMES and path.suffix.lower() not in TEXT_EXTENSIONS:
